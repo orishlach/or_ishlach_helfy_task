@@ -1,1 +1,0 @@
-# orishlach-project-management

@@ -4,6 +4,7 @@ import { TaskPriorityEnum } from "./constants.js";
 class TaskStore {
   constructor() {
     this.tasks = this.initializeDummyData();
+    this.nextId = Math.max(...this.tasks.map(task => task.id)) + 1;
   }
 
   initializeDummyData() {
