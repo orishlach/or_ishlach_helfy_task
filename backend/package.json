@@ -1,0 +1,27 @@
+{
+  "name": "project-management",
+  "version": "1.0.0",
+  "description": "backend project management",
+  "keywords": [
+    "API",
+    "backend"
+  ],
+  "license": "ISC",
+  "author": "or ishlach",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "start": "node src/index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10",
+    "prettier": "3.6.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1"
+  }
+}
