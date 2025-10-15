@@ -1,5 +1,5 @@
-import { createPortal } from 'react-dom';
-import { motion } from 'framer-motion';
+import { createPortal } from "react-dom";
+import { motion } from "framer-motion";
 
 export default function Modal({ title, children, onClose }) {
   // const hiddenAnimationState = { opacity: 0, y: 30 };
@@ -24,6 +24,6 @@ export default function Modal({ title, children, onClose }) {
         {children}
       </motion.dialog>
     </>,
-    document.getElementById('modal')
+    document.getElementById("modal"),
   );
 }

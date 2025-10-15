@@ -1,18 +1,20 @@
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 
-import Badge from './Badge.jsx';
+import Badge from "./Badge.jsx";
 
 function Tab({ isSelected, onSelect, badgeCaption, children }) {
   return (
     <li>
       <button
-        className={isSelected ? 'selected' : undefined}
+        className={isSelected ? "selected" : undefined}
         onClick={onSelect}
       >
         {children}
         <Badge key={badgeCaption} caption={badgeCaption}></Badge>
       </button>
-      {isSelected && <motion.div layoutId="tab-indicator" className="active-tab-indicator" />}
+      {isSelected && (
+        <motion.div layoutId="tab-indicator" className="active-tab-indicator" />
+      )}
     </li>
   );
 }
@@ -27,15 +29,15 @@ export default function TaskTabs({
     <>
       <menu id="tabs">
         <Tab
-          isSelected={selectedType === 'active'}
-          onSelect={() => onSelectType('active')}
+          isSelected={selectedType === "active"}
+          onSelect={() => onSelectType("active")}
           badgeCaption={tasks.active.length}
         >
           Active
         </Tab>
         <Tab
-          isSelected={selectedType === 'completed'}
-          onSelect={() => onSelectType('completed')}
+          isSelected={selectedType === "completed"}
+          onSelect={() => onSelectType("completed")}
           badgeCaption={tasks.completed.length}
         >
           Completed

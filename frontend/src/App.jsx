@@ -1,10 +1,8 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
-import TasksPage from './pages/Tasks.jsx';
+import TasksPage from "./pages/Tasks.jsx";
 
-const router = createBrowserRouter([
-  { path: '/', element: <TasksPage /> },
-]);
+const router = createBrowserRouter([{ path: "/", element: <TasksPage /> }]);
 
 function App() {
   return <RouterProvider router={router} />;

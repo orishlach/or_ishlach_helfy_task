@@ -1,5 +1,5 @@
-import { createContext, useState, useEffect } from 'react';
-import { apiService } from '../services/api.jsx';
+import { createContext, useState, useEffect } from "react";
+import { apiService } from "../services/api.jsx";
 
 export const TasksContext = createContext({
   tasks: [],
@@ -26,15 +26,15 @@ export default function TasksContextProvider({ children }) {
     try {
       const tasksData = await apiService.getTasks();
       // Map backend task structure to frontend structure
-      const mappedTasks = (tasksData || []).map(task => ({
+      const mappedTasks = (tasksData || []).map((task) => ({
         ...task,
-        status: task.completed ? 'completed' : 'active',
-        deadline: task.createdAt // Use createdAt as deadline for now since backend doesn't have deadline
+        status: task.completed ? "completed" : "active",
+        deadline: task.createdAt, // Use createdAt as deadline for now since backend doesn't have deadline
       }));
       setTasks(mappedTasks);
     } catch (err) {
-      setError('Failed to load tasks');
-      console.error('Error loading tasks:', err);
+      setError("Failed to load tasks");
+      console.error("Error loading tasks:", err);
     } finally {
       setIsLoading(false);
     }
@@ -48,19 +48,19 @@ export default function TasksContextProvider({ children }) {
       const backendTask = {
         title: task.title,
         description: task.description,
-        priority: task.priority || 'medium'
+        priority: task.priority || "medium",
       };
       const newTask = await apiService.createTask(backendTask);
       // Map backend response to frontend structure
       const mappedTask = {
         ...newTask,
-        status: newTask.completed ? 'completed' : 'active',
-        deadline: newTask.createdAt
+        status: newTask.completed ? "completed" : "active",
+        deadline: newTask.createdAt,
       };
       setTasks((prevTasks) => [mappedTask, ...prevTasks]);
     } catch (err) {
-      setError('Failed to create task');
-      console.error('Error creating task:', err);
+      setError("Failed to create task");
+      console.error("Error creating task:", err);
       throw err; // Re-throw so the form can handle it
     } finally {
       setIsLoading(false);
@@ -72,12 +72,10 @@ export default function TasksContextProvider({ children }) {
     setError(null);
     try {
       await apiService.deleteTask(taskId);
-      setTasks((prevTasks) =>
-        prevTasks.filter((task) => task.id !== taskId)
-      );
+      setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
     } catch (err) {
-      setError('Failed to delete task');
-      console.error('Error deleting task:', err);
+      setError("Failed to delete task");
+      console.error("Error deleting task:", err);
     } finally {
       setIsLoading(false);
     }
@@ -91,8 +89,8 @@ export default function TasksContextProvider({ children }) {
       // Map backend response to frontend structure
       const mappedTask = {
         ...updatedTask,
-        status: updatedTask.completed ? 'completed' : 'active',
-        deadline: updatedTask.createdAt
+        status: updatedTask.completed ? "completed" : "active",
+        deadline: updatedTask.createdAt,
       };
       setTasks((prevTasks) =>
         prevTasks.map((task) => {
@@ -100,11 +98,11 @@ export default function TasksContextProvider({ children }) {
             return mappedTask;
           }
           return task;
-        })
+        }),
       );
     } catch (err) {
-      setError('Failed to toggle task status');
-      console.error('Error toggling task:', err);
+      setError("Failed to toggle task status");
+      console.error("Error toggling task:", err);
     } finally {
       setIsLoading(false);
     }

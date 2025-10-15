@@ -15,13 +15,13 @@ const createTask = asyncHandler(async (req, res) => {
   const { title, description, priority } = req.body;
 
   if (!title) {
-    return res
-      .status(400)
-      .json(new ApiResponse(400, "Title is required"));
+    return res.status(400).json(new ApiResponse(400, "Title is required"));
   }
 
   const newTask = taskStore.createTask({ title, description, priority });
-  res.status(201).json(new ApiResponse(201, "Task created successfully", newTask));
+  res
+    .status(201)
+    .json(new ApiResponse(201, "Task created successfully", newTask));
 });
 
 const updateTask = asyncHandler(async (req, res) => {
@@ -31,14 +31,12 @@ const updateTask = asyncHandler(async (req, res) => {
   const updated = taskStore.updateTask(id, req.body);
 
   if (!updated) {
-    return res
-      .status(404)
-      .json(new ApiResponse(404, "Task not found"));
+    return res.status(404).json(new ApiResponse(404, "Task not found"));
   }
 
-  res.status(200).json(
-    new ApiResponse(200, `Task ${id} updated successfully`, updated),
-  );
+  res
+    .status(200)
+    .json(new ApiResponse(200, `Task ${id} updated successfully`, updated));
 });
 
 const deleteTask = asyncHandler(async (req, res) => {
@@ -47,9 +45,7 @@ const deleteTask = asyncHandler(async (req, res) => {
   const deleted = taskStore.deleteTask(id);
 
   if (!deleted) {
-    return res
-      .status(404)
-      .json(new ApiResponse(404, "Task not found"));
+    return res.status(404).json(new ApiResponse(404, "Task not found"));
   }
 
   res.status(204).send();
@@ -61,12 +57,12 @@ const toggleTask = asyncHandler(async (req, res) => {
   const toggled = taskStore.toggleTaskCompletion(id);
 
   if (!toggled) {
-    return res
-      .status(404)
-      .json(new ApiResponse(404, "Task not found"));
+    return res.status(404).json(new ApiResponse(404, "Task not found"));
   }
 
-  res.status(200).json(new ApiResponse(200, "Task status toggled successfully", toggled));
+  res
+    .status(200)
+    .json(new ApiResponse(200, "Task status toggled successfully", toggled));
 });
 
 export { getAllTasks, createTask, updateTask, deleteTask, toggleTask };

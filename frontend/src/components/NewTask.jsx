@@ -1,8 +1,8 @@
-import { useContext, useRef, useState } from 'react';
-import { motion, useAnimate, stagger } from 'framer-motion';
+import { useContext, useRef } from "react";
+import { useAnimate, stagger } from "framer-motion";
 
-import { TasksContext } from '../store/tasks-context.jsx';
-import Modal from './Modal.jsx';
+import { TasksContext } from "../store/tasks-context.jsx";
+import Modal from "./Modal.jsx";
 
 export default function NewTask({ onDone }) {
   const title = useRef();
@@ -24,13 +24,13 @@ export default function NewTask({ onDone }) {
     if (
       !task.title.trim() ||
       !task.description.trim() ||
-      !task.priority.trim() 
+      !task.priority.trim()
     ) {
       animate(
-        'input, textarea, select',
+        "input, textarea, select",
         { x: [-10, 0, 10, 0] },
         /** FIX FOR NEWER FRAMER MOTION -- no 'spring' transition  */
-        { type: 'linear', duration: 0.2, delay: stagger(0.05) }
+        { type: "linear", duration: 0.2, delay: stagger(0.05) },
       );
       return;
     }
@@ -39,6 +39,7 @@ export default function NewTask({ onDone }) {
       await addTask(task);
       onDone();
     } catch (error) {
+      console.error("Error adding task:", error);
     }
   }
 
@@ -70,7 +71,7 @@ export default function NewTask({ onDone }) {
             Cancel
           </button>
           <button disabled={isLoading}>
-            {isLoading ? 'Adding...' : 'Add Task'}
+            {isLoading ? "Adding..." : "Add Task"}
           </button>
         </p>
       </form>

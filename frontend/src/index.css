@@ -1,11 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Lato:wght@400;700&display=swap");
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
+  font-family: "Lato", serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background: linear-gradient(#222c31, #111d32);
   color: #d9e2f1;
   min-height: 100vh;
@@ -15,21 +18,22 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80%;
-  max-width: 40rem;
+  width: 100%;
+  max-width: 80rem;
   margin: 2rem auto;
   color: #fff;
 }
 
 #main-header h1 {
+  font-family: "Quicksand", sans-serif;
   font-size: 1.5rem;
   color: #84b0fc;
 }
 
 main {
-  width: 80%;
-  max-width: 40rem;
-  margin: 1rem auto;
+  width: 100%;
+  max-width: 80rem;
+  margin: 2rem auto;
 }
 
 #new-task label {
@@ -37,6 +41,7 @@ main {
   margin-bottom: 0.15rem;
   font-weight: bold;
   font-size: 0.8rem;
+  font-family: "Quicksand", sans-serif;
   color: #414956;
 }
 
@@ -50,8 +55,8 @@ main {
   background-color: #fff;
   color: #414956;
   font-size: 0.8rem;
+  font-family: "Quicksand", sans-serif;
 }
-
 
 #tasks {
   background-color: #22323a;
@@ -92,7 +97,7 @@ main {
   border-radius: 8px;
 }
 
-.task {
+.task-items {
   width: 100%;
   max-width: 90%;
   display: flex;
@@ -103,74 +108,92 @@ main {
   padding: 0;
 }
 
-.task header {
+.task-item {
+  width: 100%;
+}
+
+.task-item header {
+
   display: flex;
   gap: 1rem;
   align-items: flex-start;
 }
 
-.task-meta {
+.task-item-meta {
   width: 100%;
 }
 
-.task header h2 {
+.task-item header h2 {
+
   margin: 0;
   font-size: 1.25rem;
   color: #b1c1d9;
 }
 
-.task header p {
+.task-item header p {
   margin-top: 0;
+  font-family: "Quicksand", sans-serif;
   font-size: 0.7rem;
 }
 
-.task-actions {
+.task-item-actions {
   display: flex;
   justify-content: flex-end;
   gap: 1rem;
 }
 
-.task-actions button {
+.task-item-actions button {
   cursor: pointer;
+  font: inherit;
   background: transparent;
   border: none;
   color: #7aaafc;
   padding: 0;
 }
 
-.task-actions button:hover {
+.task-item-actions button:hover {
   color: #5d7bf2;
 }
 
-.task-actions .btn-negative {
+.task-item-actions .btn-negative {
   color: #ff7b7b;
 }
 
-.task-actions .btn-negative:hover {
+.task-item-actions .btn-negative:hover {
   color: #ff4f4f;
 }
 
-.task img {
+.task-item img {
   width: 4rem;
   height: 4rem;
   object-fit: contain;
 }
 
-.task-details button {
+
+.task-item-details {
+  font-size: 0.75rem;
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
+
+.task-item-details button {
   cursor: pointer;
+  font: inherit;
   background: transparent;
   border: none;
   color: #7aaafc;
   padding: 0;
 }
 
-.task-details-icon {
+.task-item-details-icon {
   display: inline-block;
   font-size: 0.85rem;
   margin-left: 0.25rem;
 }
 
-.task-description {
+.task-item-description {
   margin: 0;
 }
 
@@ -197,18 +220,6 @@ main {
   width: 30rem;
   max-width: 90%;
   z-index: 10;
-}
-
-@keyframes slide-up-fade-in {
-  0% {
-    transform: translateY(30px);
-    opacity: 0;
-  }
-
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
 }
 
 .modal h2 {
@@ -256,65 +267,46 @@ main {
   font-size: 0.5rem;
 }
 
-/* Task styles */
-.task {
-  background-color: #2a3a42;
-  border-radius: 6px;
-  padding: 1rem;
-  margin-bottom: 1rem;
+@keyframes slide-tasks {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
-
-
-.task-meta {
+.carousel {
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
   width: 100%;
+  padding: 1rem 0;
 }
 
-.task-actions {
-  display: flex;
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-
-.task-actions button {
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  color: #7aaafc;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
-}
-
-.task-actions button:hover {
-  background-color: rgba(122, 170, 252, 0.1);
-}
-
-.task-actions .btn-negative {
-  color: #ff7b7b;
-}
-
-.task-actions .btn-negative:hover {
-  color: #ff4f4f;
-  background-color: rgba(255, 123, 123, 0.1);
-}
-
-.task-details {
-  margin-top: 1rem;
-}
-
-.task-details-icon {
+.carousel-slide {
   display: inline-block;
-  font-size: 0.85rem;
-  margin-left: 0.25rem;
-  transition: transform 0.2s ease;
+  animation: 30s slide-tasks linear infinite;
 }
 
-.task-description {
-  margin: 1rem 0 0 0;
-  padding: 1rem;
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
-  color: #b1c1d9;
-  line-height: 1.5;
+.carousel:hover .carousel-slide {
+  animation-play-state: paused;
+}
+
+.carousel-item {
+  display: inline-block;
+  vertical-align: top;
+  width: 500px;
+  margin: 0 1rem;
+  background-color: #22323a;
+  border-radius: 8px;
+  color: #d9e2f1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  padding: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.carousel-item:hover {
+  transform: scale(1.05);
 }
