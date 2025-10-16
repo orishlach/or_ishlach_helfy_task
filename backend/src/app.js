@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import { ApiError } from "./utils/api-error.js";
 
 const app = express();
 

@@ -1,4 +1,4 @@
-import { Task } from "../models/Task.js";
+import { Task } from "../models/task.js";
 import { TaskPriorityEnum } from "./constants.js";
 
 class TaskStore {
